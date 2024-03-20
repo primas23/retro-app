@@ -1,0 +1,31 @@
+{
+  "name": "retro-app",
+  "version": "1.0.0",
+  "description": "App that helps the retrospective meetings",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon ./src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Petar Petrov",
+  "license": "ISC",
+  "nodemonConfig": {
+    "ignore": [
+      "*.db.json",
+      "/bin",
+      "/data"
+    ]
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "http-errors": "^2.0.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
