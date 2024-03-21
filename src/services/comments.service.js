@@ -29,6 +29,16 @@ async function gettingAllComments() {
     return allCommentsResponse;
 }
 
+async function insertingComment(text, type) {
+    return await databaseService.insertingComment(text, type);
+}
+
+async function deletingComment(commentId) {
+    return await databaseService.deletingComment(commentId);
+}
+
 module.exports = {
-    gettingAllComments
+    gettingAllComments,
+    insertingComment,
+    deletingComment,
 }

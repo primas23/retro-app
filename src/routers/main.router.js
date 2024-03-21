@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const databaseService = require('../services/database.service');
 const commentsService = require('../services/comments.service');
-
 
 // Index route
 router
@@ -24,7 +22,7 @@ router
         const text = req.body.text;
         const type = req.body.type;
 
-        const insertingComment = await databaseService.insertingComment(text, type);
+        const insertingComment = await commentsService.insertingComment(text, type);
         const allComments = await commentsService.gettingAllComments();
 
         res.render('main/index', {
@@ -40,7 +38,7 @@ router
     .get(`/delete-comment/:commentId`, async (req, res) => {
         const commentId = req.params.commentId;
 
-        const deletingComment = await databaseService.deletingComment(commentId);
+        const deletingComment = await commentsService.deletingComment(commentId);
         const allComments = await commentsService.gettingAllComments();
 
         res.render('main/index', {

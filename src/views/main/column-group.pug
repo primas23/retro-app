@@ -1,6 +1,14 @@
 div(class='col-md-4')
-    div(class='h-100 p-3 rounded-3 app-group' data-group-type=group.type)
-        h2
+    - var groupColor = 'primary'
+    if group.type == 'good'
+        -  groupColor= 'success'
+    if group.type == 'bad'
+        -  groupColor= 'danger'
+    if group.type == 'action'
+        - groupColor= 'warning'
+
+    div(class='h-100 p-3 rounded-3 app-group shadow border border-' + groupColor)
+        h2(class='text-' + groupColor)
             if group.type == 'good'
                 include ../shared/icons/icon-emoji-smile.pug
                 span  Good
@@ -14,7 +22,7 @@ div(class='col-md-4')
         ol(class='list-group list-group-numbered list-group-flush')
             each item in group.data
                 include list-item-group.pug
-        
+
         form(action='/create-comment' method='post')
             div(class='mb-3')
                 div(class='h-100 p-2 rounded-3')                    

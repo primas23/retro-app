@@ -1,6 +1,4 @@
 const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-const location = path.join('./db/data.db');
 
 const db = new sqlite3.Database('data.db', (err) => {
     if (err) {
@@ -92,7 +90,7 @@ function deletingComment(commentId) {
                         data: null,
                     });
                 } else {
-                    console.log(`A row has been inserted with id ${commentId}`);
+                    console.log(`A row has been deleted with id ${commentId}`);
                     resolve({
                         isSuccess: true,
                         message: null,
