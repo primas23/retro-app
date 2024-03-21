@@ -1,15 +1,17 @@
 doctype html
-html
+html(lang='en')
     head
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="description" content="Easy retro application")
         title=title
-        link(rel='stylesheet' href='/stylesheets/style.css')
-        link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet' href='/stylesheets/style.css' media='all')
+        link(rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' media='all')
         link(rel='shortcut icon' href='/icons8-system-task-64.png' type='image/x-icon')
     body
 
         main(class='container p-4')
-            header(class='pb-3 mb-4 border-bottom')
-                a(href='/' class='app-main-logo')
+            header(class='mb-4 border-bottom')
+                a(href='/' class='app-main-logo' aria-label='App main logo')
                     include shared/icons/icon-clipboard.pug
                     span  Welcome to Retro App
 
@@ -18,5 +20,5 @@ html
             else
                 block content
 
-        script(src='/bootstrap/dist/js/bootstrap.min.js')
-        script(src='/scripts/app.js')
+        script(src='/bootstrap/dist/js/bootstrap.min.js' defer)
+        script(src='/scripts/app.js' defer)

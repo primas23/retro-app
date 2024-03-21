@@ -1,5 +1,5 @@
 li(class='list-group-item d-flex justify-content-between align-items-start')
     div(class='ms-2 me-auto')
         span= item.text
-    a(href='/delete-comment/' + item.id class='btn btn-outline-danger mt-2')
+    a(href='/delete-comment/' + item.id class='btn btn-outline-danger mt-2' aria-label='Delete comment with id '+ item.id)
         include ../shared/icons/icon-trash3-fill.pug
