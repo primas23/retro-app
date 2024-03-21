@@ -1,30 +1,55 @@
 const express = require('express');
-const path = require('path');
 const router = express.Router();
 
-// const configurations = require('../configurations');
-// const userService = require('../services/user.service');
-// const dataService = require('../services/database.service');
+const databaseService = require('../services/database.service');
+const commentsService = require('../services/comments.service');
+
 
 // Index route
 router
-    .get(`/`, (req, res) => {
-        res.render('index', {
+    .get(`/`, async (req, res) => {
+
+        const allComments = await commentsService.gettingAllComments();
+
+        res.render('main/index', {
             title: 'Home',
             activeUrl: `/`,
-            goods: [
-                'Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.'
-            ],
-            bads: [
-                'Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.',
-                'Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.',
-                'Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.',
-            ],
-            actions: [
-                'Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.',
-                'Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.',
-            ],
+            data: allComments.data,
+            errorMessage: allComments.message,
         });
+    });
+
+router
+    .post(`/create-comment`, async (req, res) => {
+        const text = req.body.text;
+        const type = req.body.type;
+
+        const insertingComment = await databaseService.insertingComment(text, type);
+        const allComments = await commentsService.gettingAllComments();
+
+        res.render('main/index', {
+            title: 'Home',
+            activeUrl: `/`,
+            data: allComments.data,
+            errorMessage: insertingComment.message || allComments.message || null,
+        });
+
+    });
+
+router
+    .get(`/delete-comment/:commentId`, async (req, res) => {
+        const commentId = req.params.commentId;
+
+        const deletingComment = await databaseService.deletingComment(commentId);
+        const allComments = await commentsService.gettingAllComments();
+
+        res.render('main/index', {
+            title: 'Home',
+            activeUrl: `/`,
+            data: allComments.data,
+            errorMessage: deletingComment.message || allComments.message || null,
+        });
+
     });
 
 module.exports = router;

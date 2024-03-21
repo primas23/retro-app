@@ -1,0 +1,23 @@
+div(class='col-md-4')
+    div(class='h-100 p-3 rounded-3 app-group' data-group-type=group.type)
+        h2
+            if group.type == 'good'
+                include ../shared/icons/icon-emoji-smile.pug
+                span  Good
+            if group.type == 'bad'
+                include ../shared/icons/icon-emoji-frown.pug
+                span  Bad
+            if group.type == 'action'
+                include ../shared/icons/icon-lightning.pug
+                span  Actions
+
+        ol(class='list-group list-group-numbered list-group-flush')
+            each item in group.data
+                include list-item-group.pug
+        
+        form(action='/create-comment' method='post')
+            div(class='mb-3')
+                div(class='h-100 p-2 rounded-3')                    
+                    input(type='hidden' name='type' value=group.type)
+                    textarea(class='form-control' rows='3' name='text' placeholder='Add new comment + Enter')
+                    button(type='submit' class='btn btn-outline-primary mt-2') + Add

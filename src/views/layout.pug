@@ -7,8 +7,16 @@ html
         link(rel='shortcut icon' href='/icons8-system-task-64.png' type='image/x-icon')
     body
 
-        div(class='container')
-            block content
+        main(class='container p-4')
+            header(class='pb-3 mb-4 border-bottom')
+                a(href='/' class='app-main-logo')
+                    include shared/icons/icon-clipboard.pug
+                    span  Welcome to Retro App
+
+            if errorMessage
+                include ./shared/alert.pug
+            else
+                block content
 
         script(src='/bootstrap/dist/js/bootstrap.min.js')
         script(src='/scripts/app.js')

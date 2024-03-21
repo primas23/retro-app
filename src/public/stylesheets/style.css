@@ -1,7 +1,4 @@
-/* .btn-outline-danger svg {
-    background-color: red;
+.app-main-logo {
+    color: inherit;
+    text-decoration: inherit;
 }
-
-.btn-outline-danger:hover svg {
-    background-color: whitesmoke;
-} */
